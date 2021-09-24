@@ -1,2 +1,0 @@
-# Washington State University
- 
