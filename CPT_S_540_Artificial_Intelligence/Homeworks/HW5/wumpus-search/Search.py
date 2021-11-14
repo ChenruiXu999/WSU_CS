@@ -1,9 +1,13 @@
 # Search.py
+#
 # A* search for wumpus world navigation in Python.
+
 import sys
 import Action
 import Orientation
+
 class SearchState:
+	
 	def __init__(self, location, orientation, depth, parent, action):
 		self.location = location
 		self.orientation = orientation
@@ -11,19 +15,22 @@ class SearchState:
 		self.parent = parent
 		self.action = action
 		self.heuristic = 0
-		self.cost = 0		
+		self.cost = 0
+		
 	def __eq__(self, other):
 		if ((self.location == other.location) and (self.orientation == other.orientation)):
 			return True
 		else:
 			return False
 
-class SearchEngine:	
+class SearchEngine:
+	
 	def __init__(self):
 		self.frontier = []
 		self.explored = []
 		self.safeLocations = []
-		self.nodeCount = 0	
+		self.nodeCount = 0
+		
 	# These are the main methods:
 	# - AddSafeLocation: Tell the search about locations you think are safe; the search only considers safe locations to move through.
 	# - RemoveSafeLocation: If you determine a safe location is in fact not safe, then you can remove it from consideration.
@@ -157,6 +164,7 @@ class SearchEngine:
 			return True
 		else:
 			return False
+		
 	# Return true if state on explored or frontier lists
 	def Visited (self, state):
 		if (state in self.explored):
@@ -164,6 +172,7 @@ class SearchEngine:
 		if (state in self.frontier):
 			return True
 		return False
+
 	# Insert state into frontier, keeping it in order by state->cost
 	# Among equal-cost states, the new state is put first so that A* performs
 	# a DFS (more efficient than BFS) among states with equal costs.
@@ -176,3 +185,4 @@ class SearchEngine:
 				break
 		if (not inserted):
 			self.frontier.append(state)
+

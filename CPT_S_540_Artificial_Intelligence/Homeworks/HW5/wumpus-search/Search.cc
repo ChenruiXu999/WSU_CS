@@ -1,12 +1,17 @@
 // Search.cc
+//
 // A* search for wumpus world navigation.
+
 #include <iostream>
 #include <list>
 #include <stdlib.h>
 #include "Search.h"
+
 using namespace std;
 
+
 // ----- SearchState methods
+
 bool SearchState::operator== (const SearchState& state)
 {
 	if ((location.X == state.location.X) && (location.Y == state.location.Y) &&
@@ -17,7 +22,9 @@ bool SearchState::operator== (const SearchState& state)
 	return false;
 }
 
+
 // ----- SearchEngine methods
+
 // Use search to find sequence of actions from start location/orientation to goal location/orientation.
 // Returns empty action list if not path found (or already at the goal).
 list<Action> SearchEngine::FindPath (Location startLocation, Orientation startOrientation, Location goalLocation, Orientation goalOrientation)
@@ -271,7 +278,9 @@ void SearchEngine::AddToFrontierInOrder (SearchState* state)
 	frontier.insert (itr, state);
 }
 
+
 // ----- Utility methods
+
 list<Location>::iterator findLocation (list<Location>::iterator first, list<Location>::iterator last, const Location& val)
 {
 	while (first != last)
